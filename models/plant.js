@@ -1,26 +1,42 @@
-// import dependencies
+///////////////////////////////////////////////////
+/// Our schema and model for the fruit resource ///
+///////////////////////////////////////////////////
+
+//const mongoose = require('mongoose')  //import mongoose
 const mongoose = require('./connection')
 
-// import commentSchema for use as subdoc
+// import our commentSchema, to use as a subdocument
 const commentSchema = require('./comment')
 
-// destructure the schema and model constructors from mongoose
-const { Schema, model } = mongoose
+// we'll destructure the Schema and model functions from mongoose
+const{ Schema, model } = mongoose
 
-const plantSchema = new Schema(
-	{
-		name: { type: String, required: true },
-		scientificName: { type: String},
-        light: { type: String },
-		water: { type: String },
-		flowering: { type: Boolean }
-	},
-	{ timestamps: true }
-)
+const plantSchema = new Schema ({
+    name: {
+    type: String,
+    required: true
+    },
+    scientificName: {
+    type: String
+    },
+    water: {
+        type: String
+    },
+    light: {
+        type: String
+    },
+    flowering: {
+    type: Boolean
+    },
+    comments: [commentSchema]
+}, {
+    timestamps: true
+})
 
-const Plant = model('Plant', plantSchema)
+const Plant = model('Plant',plantSchema)
 
-/////////////////////////////////
-// Export our Model
-/////////////////////////////////
+////////////////////////
+/// Export our Model ///
+////////////////////////
+
 module.exports = Plant
