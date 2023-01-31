@@ -1,0 +1,32 @@
+{% layout 'layout.liquid' %}
+{% block content %}
+  <div class="container-sm">
+    <form method="POST">
+      <fieldset>
+        <legend>Create New Sale</legend>
+        <label class="form-label">Asking Price ($):</label>
+        <input
+          type="text"
+          class="form-control"
+          name="price"
+          placeholder="What kind of fruit is it?">
+        <label class="form-label">Maturity?:</label>
+        <input
+          type="text"
+          class="form-control"
+          name="age"
+          placeholder="Pick one">
+        <label class="form-label">Height:</label>
+        <input
+          type="text"
+          class="form-control"
+          name="height"
+          placeholder="Pick one">
+      </fieldset>
+      <input
+        type="submit"
+        class="btn btn-success"
+        value="Post New Sale">
+    </form>
+  </div>
+{% endblock %}

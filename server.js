@@ -6,6 +6,7 @@ const express = require("express")
 const middleware = require('./utils/middleware')
 const PlantRouter = require('./controllers/plantControllers')
 const UserRouter = require('./controllers/user')
+const SaleRouter = require('./controllers/saleControllers')
 // const TestRouter = require('./models/apitest')
 const User = require("./models/user")
 // SEE MORE DEPENDENCIES IN ./utils/middleware.js
@@ -44,6 +45,7 @@ const options = {
 //})
 app.use('/auth', UserRouter)
 app.use('/plants', PlantRouter)
+app.use('/sale', SaleRouter)
 // app.use('/test', TestRouter)
 
 

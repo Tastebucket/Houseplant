@@ -30,4 +30,14 @@ const saleSchema = new Schema ({
     image: {
         type: String
     }
+},  {
+    timestamps: true
 })
+
+const Sale = model('Sale',saleSchema)
+
+////////////////////////
+/// Export our Model ///
+////////////////////////
+
+module.exports = Sale

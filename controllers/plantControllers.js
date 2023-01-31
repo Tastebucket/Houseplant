@@ -11,6 +11,10 @@ const axios = require('axios')
 /////////////////////////////////////
 const router = express.Router()
 
+
+/////////////////////////////
+////      Routes         ////
+/////////////////////////////
 ///Index route
 router.get('/', (req, res) => {
     const { username, loggedIn, userId } = req.session
@@ -31,6 +35,7 @@ router.get('/:id', (req, res) => {
     const id = req.params.id
     const { username, loggedIn, userId } = req.session
     console.log("This is the id", req.params.id)
+    console.log('this is the session', req.session)
     // find the plant by its id
     Plant.findById(id)
         .then(plant => { 
@@ -45,6 +50,8 @@ router.get('/:id', (req, res) => {
 })
 
 
-
+//////////////////////////////
+//// Export Router        ////
+//////////////////////////////
 
 module.exports = router
