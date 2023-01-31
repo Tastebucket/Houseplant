@@ -1,10 +1,19 @@
 {% layout 'layout.liquid' %}
 {% block content %}
   <div>
+    <input
+      type="text"
+      id="plant-search"
+      placeholder="Search Plants..">
+    <button id="search-button">GO</button>
+    <button id="reset">RESET</button>
     <h2 class="display-6">All plants</h2>
     <div class="row">
       {% for plant in plants %}
-        <div class="card" style="width: 18rem;">
+        <div
+          class="card plant-card"
+          id="{{ plant.name }}"
+          style="width: 18rem;">
           <h5 class="card-header">{{ plant.name }}</h5>
           <div class="card-body">
             <h5 class="card-title">
@@ -24,4 +33,46 @@
       {% endfor %}
     </div>
   </div>
+  <script>
+
+    const searchButton = document.getElementById('search-button')
+    const reset = document.getElementById('reset')
+    console.log(searchButton)
+
+    const search = () => {
+      const input = document.getElementById('plant-search')
+
+// console.log(input)
+      const upperSearch = input.value.toUpperCase()
+
+// console.log(upperSearch)
+
+      const plants = document.getElementsByClassName('plant-card')
+
+
+// console.log(chars)
+
+      for (i = 0; i < plants.length; i ++) {
+        h5 = plants[i].getElementsByClassName('card-header')[0]
+        let txtValue = h5.textContent || h5.innerText
+
+        console.log(txtValue.toUpperCase().indexOf(upperSearch))
+        if (txtValue.toUpperCase().indexOf(upperSearch) > -1) {
+          plants[i].style.display = ''
+        } else {
+          plants[i].style.display = 'none'
+        }
+      }
+      reset.style.display = 'inline-block'
+    };
+    const displayAll = () => {
+      const plants = document.getElementsByClassName('plant-card')
+      for (i = 0; i < plants.length; i ++) {
+        plants[i].style.display = 'inline-block'
+      }
+      reset.style.display = 'none'
+    };
+    reset.addEventListener('click', displayAll)
+    searchButton.addEventListener('click', search)
+  </script>
 {% endblock %}

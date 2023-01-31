@@ -1,7 +1,7 @@
 {% block content %}
   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container-fluid">
-      <a href="/" class="navbar-brand">Examplr</a>
+      <a href="/" class="navbar-brand">Unnamed Houseplantr</a>
       {% if loggedIn %}
         <a href="/plants/mine" class="nav-link text-light">Hello {{ username }}
         </a>
@@ -18,7 +18,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         {% if loggedIn %}
-          <a href="/plants" class="nav-link text-light">View All</a>
+          <a href="/plants" class="nav-link text-light">Browse</a>
           <a href="/plants/new" class="nav-link text-light">New</a>
           <a href="/plants/mine" class="nav-link text-light">My Examples</a>
           <a href="/auth/logout" class="nav-link text-light">Log Out</a>

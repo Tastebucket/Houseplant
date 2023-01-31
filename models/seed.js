@@ -1,41 +1,58 @@
-
 const mongoose = require('./connection')
 const Plant = require('./plant')
+const axios = require("axios");
+require('dotenv').config()
+
+const db = mongoose.connection
+
+
 /////////////////////////////////////
 //// Seed Script code            ////
 /////////////////////////////////////
-// first, we'll save our db connection to a variable
-const db = mongoose.connection
 
 db.on('open', () => {
-    // array of starter resources(plants)
-    const startPlants = [
-        { name: 'Monstera' },
-        { name: 'Parlor Palm' },
-        { name: 'Dracaena' },
-        { name: 'Aloe Vera' },
-        { name: 'Ficus' }
-    ]
-    // then we delete every plant in the database(all instances of this resource)
+    const startPlants = []
+    /// Delete plants in the database
     Plant.deleteMany({})
         .then(() => {
-            // then we'll seed(create) our starter plants
-            Plant.create(startPlants)
-                // tell our app what to do with success and failures
+            // request plant list from API
+            axios.request(options).then(function (response) {
+                console.log(response.data[1])
+                for (i=0; i<response.data.length; i++){
+                    startPlants[i]=
+                    { name : `${response.data[i]['Common name']}`,
+                      water : `${response.data[i]['Watering']}`,
+                      light : `${response.data[i]['Light tolered']}`,
+                      category : `${response.data[i]['Categories']}`,
+                      apiId : `${response.data[i]['id']}`,
+                      scientificName: `${response.data[i]['Latin name']}`,
+                      imageLink : `${response.data[i]['Img']}`
+                    }
+                    if (startPlants[i].name === 'null'){
+                        startPlants[i].name = `${response.data[i]['Latin name']}`
+                    } else {startPlants[i].name = `${response.data[i]['Common name'][0]}`}
+                }
+                // Save plant list to db
+                Plant.create(startPlants)
                 .then(data => {
                     console.log('here are the created plants: \n', data)
-                    // once it's done, we close the connection
+                    // close the connection
                     db.close()
                 })
                 .catch(err => {
                     console.log('The following error occurred: \n', err)
-                    // always close the connection
+                    // close the connection
                     db.close()
                 })
+                }).catch(function (error) {
+                console.error(error)
+            })
+            
         })
         .catch(err => {
             console.log(err)
-            // always make sure to close the connection
+            // close the connection
             db.close()
         })
 })
+

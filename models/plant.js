@@ -1,14 +1,14 @@
 ///////////////////////////////////////////////////
-/// Our schema and model for the fruit resource ///
+/// Schema and model for plant resource ///
 ///////////////////////////////////////////////////
 
-//const mongoose = require('mongoose')  //import mongoose
+//import mongoose
 const mongoose = require('./connection')
 
-// import our commentSchema, to use as a subdocument
+// Import our commentSchema, to use as a subdocument
 const commentSchema = require('./comment')
 
-// we'll destructure the Schema and model functions from mongoose
+// Destructure the Schema and model functions from mongoose
 const{ Schema, model } = mongoose
 
 const plantSchema = new Schema ({
