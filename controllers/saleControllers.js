@@ -16,22 +16,27 @@ const router = express.Router()
 ////      Routes         ////
 /////////////////////////////
 
-router.get('/new/:plantId', (req,res) => {
+//Index route for sales on a plant
+router.get('/:plantId', (req,res) =>{
+    const { username, loggedIn, userId } = req.session
+    // find all the plants
     const plantId = req.params.plantId
-    console.log('this is the session', req.session)
-    req.body.seller = req.session.userId
-    req.body.plant = plantId
-    const newSale = req.body
-    console.log(newSale)
-    // Sale.create(newSale)
-    //     .then(sale =>{
-    //         res.send(sale)})
-    //     .catch((error) => {
-    //         console.log('the error', error);
-                
-    //         res.redirect(`/error?error=${error}`)
-    //     })
-    res.render('sale/new', {plantId, ...req.session})
+    Sale.find({plant: plantId })
+        .populate('plant', 'name')
+        .populate('seller', 'username')
+        .then(sales => { 
+            res.render('sale/index', { sales, username, loggedIn, userId })
+        })
+        // catch errors if they occur
+        .catch(err => {
+            console.log(err)
+            res.status(404).json(err)
+        })
+})
+
+// Get route for new sale form
+router.get('/new/:plantId', (req,res) => {
+    res.render('sale/new', { ...req.session})
     })
 ///Create Route
 router.post('/new/:plantId', (req,res) => {

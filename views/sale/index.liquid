@@ -1,0 +1,36 @@
+{% layout 'layout.liquid' %}
+{% block content %}
+  <div>
+    <input
+      type="text"
+      id="plant-search"
+      placeholder="Search Plants..">
+    <button id="search-button">GO</button>
+    <button id="reset">RESET</button>
+    <h2 class="display-6">All plants</h2>
+    <div class="row">
+      {% for sale in sales %}
+        <div
+          class="card plant-card"
+          id="{{ sale.name }}"
+          style="width: 18rem;">
+          <h5 class="card-header">{{ sale.plant.name }}</h5>
+          <div class="card-body">
+            <h5 class="card-title">
+              Latin name: {{ sale.seller.username }}
+            </h5>
+            <p class="card-text">
+              Body: {{ plant.imageLink }}
+            </p>
+            <p class="card-img">
+              <img src="{{plant.imageLink}}">
+            </p>
+            <a href="/plants/{{ plant.id }}" class="btn btn-info">
+              View {{ plant.title }}
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
