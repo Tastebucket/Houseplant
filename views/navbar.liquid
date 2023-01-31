@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <a href="/" class="navbar-brand">Unnamed Houseplantr</a>
       {% if loggedIn %}
-        <a href="/plants/mine" class="nav-link text-light">Hello {{ username }}
+        <a href="/plants/mine" class="nav-link text-light me-3">Hello {{ username }}
         </a>
       {% endif %}
       <button
@@ -18,13 +18,13 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         {% if loggedIn %}
-          <a href="/plants" class="nav-link text-light">Browse</a>
-          <a href="/plants/new" class="nav-link text-light">New</a>
-          <a href="/plants/mine" class="nav-link text-light">My Examples</a>
-          <a href="/auth/logout" class="nav-link text-light">Log Out</a>
+          <a href="/plants" class="nav-link text-light me-3">Browse</a>
+          <a href="/plants/new" class="nav-link text-light me-3">New</a>
+          <a href="/plants/mine" class="nav-link text-light me-3">My Examples</a>
+          <a href="/auth/logout" class="nav-link text-light me-3">Log Out</a>
         {% else %}
-          <a href="/auth/signup" class="nav-link text-light">Sign Up</a>
-          <a href="/auth/login" class="nav-link text-light">Sign In</a>
+          <a href="/auth/signup" class="nav-link text-light me-3">Sign Up</a>
+          <a href="/auth/login" class="nav-link text-light me-3">Sign In</a>
         {% endif %}
       </div>
     </div>

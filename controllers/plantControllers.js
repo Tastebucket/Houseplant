@@ -3,6 +3,7 @@
 /////////////////////////////////////
 const express = require('express')
 const Plant = require('../models/plant')
+const Sale = require('../models/sale')
 require('dotenv').config()
 const axios = require('axios')
 

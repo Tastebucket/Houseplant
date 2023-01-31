@@ -17,7 +17,7 @@
           <h5 class="card-header">{{ plant.name }}</h5>
           <div class="card-body">
             <h5 class="card-title">
-              Latin name: {{ plant.scientificName }}
+              {{ plant.scientificName }}
             </h5>
             <p class="card-text">
               Body: {{ plant.imageLink }}
@@ -54,10 +54,12 @@
 
       for (i = 0; i < plants.length; i ++) {
         h5 = plants[i].getElementsByClassName('card-header')[0]
+        latin = plants[i].getElementsByClassName('card-title')[0]
         let txtValue = h5.textContent || h5.innerText
+        let txtLatin = latin.textContent || latin.innerText
 
-        console.log(txtValue.toUpperCase().indexOf(upperSearch))
-        if (txtValue.toUpperCase().indexOf(upperSearch) > -1) {
+// console.log(txtValue.toUpperCase().indexOf(upperSearch))
+        if ((txtValue.toUpperCase().indexOf(upperSearch) > -1) || (txtLatin.toUpperCase().indexOf(upperSearch) > -1)) {
           plants[i].style.display = ''
         } else {
           plants[i].style.display = 'none'
