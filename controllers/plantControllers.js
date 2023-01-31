@@ -14,7 +14,7 @@ const router = express.Router()
 ///Index route
 router.get('/', (req, res) => {
     const { username, loggedIn, userId } = req.session
-    // find all the fruits
+    // find all the plants
     Plant.find({})
         .then(plants => { 
             res.render('plants/index', { plants, username, loggedIn, userId })
@@ -26,6 +26,23 @@ router.get('/', (req, res) => {
         })
 })
 
+//Show route
+router.get('/:id', (req, res) => {
+    const id = req.params.id
+    const { username, loggedIn, userId } = req.session
+    console.log("This is the id", req.params.id)
+    // find the plant by its id
+    Plant.findById(id)
+        .then(plant => { 
+            res.render('plants/show',  { plant, username, loggedIn, userId })
+            // res.send( plants )
+        })
+        // catch errors if they occur
+        .catch(err => {
+            console.log(err)
+            res.status(404).json(err)
+        })
+})
 
 
 
