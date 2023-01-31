@@ -6,6 +6,7 @@ const express = require("express")
 const middleware = require('./utils/middleware')
 const PlantRouter = require('./controllers/plantControllers')
 const UserRouter = require('./controllers/user')
+const TestRouter = require('./models/apitest')
 const User = require("./models/user")
 // SEE MORE DEPENDENCIES IN ./utils/middleware.js
 // user and resource routes linked in ./utils/middleware.js
@@ -23,6 +24,7 @@ middleware(app)
 
 app.use('/auth', UserRouter)
 app.use('/plants', PlantRouter)
+app.use('/test', TestRouter)
 
 
 app.get('/', (req, res) => {
