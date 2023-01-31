@@ -8,13 +8,13 @@
           <h5 class="card-header">{{ plant.name }}</h5>
           <div class="card-body">
             <h5 class="card-title">
-              Ready?: {{ plant.ready }}
+              Latin name: {{ plant.scientificName }}
             </h5>
             <p class="card-text">
-              Body: {{ plant.body }}
+              Body: {{ plant.imageLink }}
             </p>
-            <p class="card-text">
-              Amount: {{ plant.amount }}
+            <p class="card-img">
+              <img src="{{plant.imageLink}}">
             </p>
             <a href="/plants/{{ plant.id }}" class="btn btn-info">
               View {{ plant.title }}

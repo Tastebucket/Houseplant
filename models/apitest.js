@@ -35,7 +35,18 @@ db.on('open', () => {
             axios.request(options).then(function (response) {
                 console.log(response.data[1])
                 for (i=0; i<response.data.length; i++){
-                    startPlants[i]={ name : `${response.data[i]['Common name']}`}
+                    startPlants[i]=
+                    { name : `${response.data[i]['Common name']}`,
+                      water : `${response.data[i]['Watering']}`,
+                      light : `${response.data[i]['Light tolered']}`,
+                      category : `${response.data[i]['Categories']}`,
+                      apiId : `${response.data[i]['id']}`,
+                      scientificName: `${response.data[i]['Latin name']}`,
+                      imageLink : `${response.data[i]['Img']}`
+                    }
+                    if (startPlants[i].name === 'null'){
+                        startPlants[i].name = `${response.data[i]['Latin name']}`
+                    } else {startPlants[i].name = `${response.data[i]['Common name'][0]}`}
                 }
                 Plant.create(startPlants)
                 // tell our app what to do with success and failures

@@ -25,6 +25,15 @@ const plantSchema = new Schema ({
     light: {
         type: String
     },
+    category: {
+        type: String
+    },
+    imageLink: {
+        type: String
+    },
+    apiId: {
+        type: String
+    },
     flowering: {
     type: Boolean
     },
