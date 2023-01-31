@@ -1,36 +1,50 @@
 {% layout 'layout.liquid' %}
 {% block content %}
   <div>
-    <input
-      type="text"
-      id="plant-search"
-      placeholder="Search Plants..">
-    <button id="search-button">GO</button>
-    <button id="reset">RESET</button>
-    <h2 class="display-6">All plants</h2>
     <div class="row">
-      {% for plant in plants %}
-        <div
-          class="card plant-card"
-          id="{{ plant.name }}"
-          style="width: 18rem;">
-          <h5 class="card-header">{{ plant.name }}</h5>
-          <div class="card-body">
-            <h5 class="card-title">
-              {{ plant.scientificName }}
-            </h5>
-            <p class="card-text">
-              Body: {{ plant.imageLink }}
-            </p>
-            <p class="card-img">
-              <img src="{{plant.imageLink}}">
-            </p>
-            <a href="/plants/{{ plant.id }}" class="btn btn-info">
-              View {{ plant.title }}
-            </a>
-          </div>
+      <div class="col-1 m-2">
+        <h3>Browse by Category</h3>
+        {% for category in categories %}
+          <a class="d-block" href="/plants/category/{{ category.Category }}">
+            {{ category.Category }}</a>
+        {% endfor %}
+      </div>
+      <div class="col-10">
+        <div class="container-md m-3">
+          <input
+            type="text"
+            id="plant-search"
+            placeholder="Search Plants..">
+
+          <button id="search-button">GO</button>
+          <button id="reset">RESET</button>
         </div>
-      {% endfor %}
+        <h2 class="display-6">All plants</h2>
+        <div class="row">
+          {% for plant in plants %}
+            <div
+              class="card plant-card mb-3 me-3"
+              id="{{ plant.name }}"
+              style="width: 18rem;">
+              <h5 class="card-header">{{ plant.name }}</h5>
+              <div class="card-body">
+                <h5 class="card-title">
+                  {{ plant.scientificName }}
+                </h5>
+                <p class="card-text">
+                  Body: {{ plant.imageLink }}
+                </p>
+                <p class="card-img">
+                  <img src="{{plant.imageLink}}">
+                </p>
+                <a href="/plants/{{ plant.id }}" class="btn btn-info">
+                  View {{ plant.title }}
+                </a>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
     </div>
   </div>
   <script>

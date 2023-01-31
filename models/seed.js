@@ -15,6 +15,14 @@ db.on('open', () => {
     /// Delete plants in the database
     Plant.deleteMany({})
         .then(() => {
+            const options = {
+                method: 'GET',
+                url: `${process.env.API_URL_ALL}`,
+                headers: {
+                  'X-RapidAPI-Key': `${process.env.API_KEY}`,
+                  'X-RapidAPI-Host': `${process.env.API_HOST}`
+                }
+            }
             // request plant list from API
             axios.request(options).then(function (response) {
                 console.log(response.data[1])

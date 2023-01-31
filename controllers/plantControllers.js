@@ -22,15 +22,46 @@ router.get('/', (req, res) => {
     // find all the plants
     Plant.find({})
         .then(plants => { 
-            res.render('plants/index', { plants, username, loggedIn, userId })
+            const options = {
+                method: 'GET',
+                url: `${process.env.API_URL_CAT}`,
+                headers: {
+                  'X-RapidAPI-Key': `${process.env.API_KEY}`,
+                  'X-RapidAPI-Host': `${process.env.API_HOST}`
+                }
+            }
+            axios.request(options)
+                .then(function (response) {
+                console.log(response.data);
+                const categories = response.data
+                    res.render('plants/index', { plants, categories, username, loggedIn, userId })
+                })
+                .catch(function (error) {
+                    console.error(error);
         })
         // catch errors if they occur
         .catch(err => {
             console.log(err)
             res.status(404).json(err)
         })
+    })
 })
-
+///Index route
+router.get('/category/:categoryName', (req, res) => {
+    const { username, loggedIn, userId } = req.session
+    // find all the plants
+    const category = req.params.categoryName
+    console.log(category)
+    Plant.find({category: `${category}`})
+        .then(plants => { 
+                    res.render('plants/index', { plants, username, loggedIn, userId })
+                })
+        // catch errors if they occur
+        .catch(err => {
+            console.log(err)
+            res.status(404).json(err)
+        })
+    })
 //Show route
 router.get('/:id', (req, res) => {
     const id = req.params.id

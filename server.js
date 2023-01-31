@@ -7,8 +7,7 @@ const middleware = require('./utils/middleware')
 const PlantRouter = require('./controllers/plantControllers')
 const UserRouter = require('./controllers/user')
 const SaleRouter = require('./controllers/saleControllers')
-// const TestRouter = require('./models/apitest')
-const User = require("./models/user")
+
 // SEE MORE DEPENDENCIES IN ./utils/middleware.js
 // user and resource routes linked in ./utils/middleware.js
 
@@ -24,14 +23,6 @@ middleware(app)
 ////////////////////
 const axios = require("axios");
 
-const options = {
-  method: 'GET',
-  url: 'https://house-plants2.p.rapidapi.com/id/53417c12-4824-5995-bce0-b81984ebbd1d',
-  headers: {
-    'X-RapidAPI-Key': 'fa772b2ccfmsha501e58960b67eap1babc2jsn2c0a909f7b3c',
-    'X-RapidAPI-Host': 'house-plants2.p.rapidapi.com'
-  }
-};
 
 // app.get('/test/apitest', (req,res) => {
 // 	axios.request(options).then(function (response) {
