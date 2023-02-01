@@ -17,7 +17,9 @@
             <p class="card-text">
               Price: ${{ sale.price }}
             </p>
-            {% if sale.image %}
+            {% if sale.image == '' %}
+              <img class="card-img" src="https://www.pngitem.com/pimgs/m/13-133991_plants-leaf-flowering-silhouette-plant-free-download-plant.png">
+            {% elsif sale.image %}
               <img class="card-img" src="{{sale.image}}">
             {% else %}
               <img class="card-img" src="https://www.pngitem.com/pimgs/m/13-133991_plants-leaf-flowering-silhouette-plant-free-download-plant.png">

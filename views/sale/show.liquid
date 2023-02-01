@@ -22,7 +22,9 @@
               </dl>
             </div>
             <div class="col-3">
-              {% if sale.image %}
+              {% if sale.image == '' %}
+                <img class="rounded img-fluid" src="https://www.pngitem.com/pimgs/m/13-133991_plants-leaf-flowering-silhouette-plant-free-download-plant.png">
+              {% elsif sale.image %}
                 <img class="rounded img-fluid" src="{{sale.image}}">
               {% else %}
                 <img class="rounded img-fluid" src="https://www.pngitem.com/pimgs/m/13-133991_plants-leaf-flowering-silhouette-plant-free-download-plant.png">
