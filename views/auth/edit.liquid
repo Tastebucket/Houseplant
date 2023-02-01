@@ -1,0 +1,35 @@
+{% layout 'layout.liquid' %}
+{% block content %}
+  <div class="container-sm">
+    <form action="/auth/{{user.id}}?_method=PUT" method="POST">
+      <fieldset>
+        <legend>Edit Profile</legend>
+        <label class="form-label">About Me:</label>
+        <input
+          type="text"
+          class="form-control"
+          name="bio"
+          placeholder="{{ user.bio }}"
+          value="{{ user.bio }}">
+        <label class="form-label">Favorite Plant?:</label>
+        <input
+          type="text"
+          class="form-control"
+          name="favPlant"
+          placeholder="{{ user.favPlant }}"
+          value="{{ user.favPlant }}">
+        <label class="form-label">Profile Picture (Image Link):</label>
+        <input
+          type="text"
+          class="form-control"
+          name="imgLink"
+          placeholder="https://thumbs.dreamstime.com/b/black-silhouette-sprouting-plant-pot-black-silhouette-sprouting-plant-pot-isolated-white-background-seeding-122024137.jpg"
+          value="https://thumbs.dreamstime.com/b/black-silhouette-sprouting-plant-pot-black-silhouette-sprouting-plant-pot-isolated-white-background-seeding-122024137.jpg">
+      </fieldset>
+      <input
+        type="submit"
+        class="btn btn-success"
+        value="Edit Profile">
+    </form>
+  </div>
+{% endblock %}

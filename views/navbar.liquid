@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <a href="/" class="navbar-brand">Unnamed Houseplantr</a>
       {% if loggedIn %}
-        <a href="/plants/mine" class="nav-link text-light me-3">Hello {{ username }}
+        <a href="/auth/{{ userId }}" class="nav-link text-light me-3">Hello {{ username }}
         </a>
       {% endif %}
       <button

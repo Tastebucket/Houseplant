@@ -70,7 +70,7 @@ router.post('/login', async (req, res) => {
           			const { username, loggedIn, userId } = req.session
 
 					console.log('session user id', req.session.userId)
-					// redirect to /examples if login is successful
+					// redirect to home if login is successful
 					res.redirect('/')
 				} else {
 					// send an error if the password doesnt match
@@ -94,6 +94,57 @@ router.get('/logout', (req, res) => {
 	req.session.destroy(() => {
 		res.redirect('/')
 	})
+})
+//GET -> edit route
+router.get('/edit/:id', (req,res) => {
+    const id = req.params.id
+    User.findById(id)
+        .then(user => {
+            res.render('auth/edit', {user, ...req.session})
+        })
+        .catch(err=> {
+            res.redirect(`/error?error=${err}`)
+        })
+})
+
+
+// PUT route
+// Update -> updates a specific sale(only if the seller is updating)
+router.put('/:id', (req, res) => {
+    const id = req.params.id
+    User.findById(id)
+        .then(user=> {
+			console.log('This is the user', user.id)
+            // if the selleer is the person who is logged in
+            if (user.id === req.session.userId) {
+                // update and save the sale
+                return user.updateOne(req.body)
+            } else {
+				console.log('no worky')
+                // otherwise send a 401 unauthorized status
+                //res.redirect(`/error?error=You%20Are%20not%20allowed%20to%20edit%20this%20sale`)
+            }
+        })
+        .then(() => {
+            res.redirect(`/auth/${id}`)
+        })
+        .catch(err => {
+            // res.status(400).json(err)
+            res.redirect(`/error?error=${err}`)
+        })
+})
+// show route
+router.get('/:userId', (req,res)=>{
+	const userId = req.params.userId
+	User.findById(userId)
+		.then(user=>{
+			res.render('auth/show', {user,...req.session})
+	})
+		.catch((error) => {
+			console.log('the error', error);
+			
+			res.redirect(`/error?error=${error}`)
+		})
 })
 
 // Export the Router

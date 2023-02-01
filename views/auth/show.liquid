@@ -1,0 +1,29 @@
+{% layout 'layout.liquid' %}
+{% block content %}
+  <div class="container-md">
+    <h1 class="m-3">{{ user.username }}</h1>
+    <div class="row">
+      <div class="col-2">
+        {% if user.imgLink %}
+          <img class="rounded img-fluid" src="{{ user.imgLink }}">
+        {% else %}
+          <img class="rounded img-fluid" src="https://thumbs.dreamstime.com/b/black-silhouette-sprouting-plant-pot-black-silhouette-sprouting-plant-pot-isolated-white-background-seeding-122024137.jpg">
+        {% endif %}
+      </div>
+      <div class="col-8">
+        {% if user.bio %}
+          <h2>About Me</h2>
+          <p>{{ user.bio }}</p>
+        {% endif %}
+        {% if user.favPlant %}
+          <h2>Favorite Plant</h2>
+          <p>{{ user.favPlant }}</p>
+        {% endif %}
+        {% if user.userId == req.session.userId %}
+          <a href="/auth/edit/{{user.id}}" class="btn btn-primary">Edit Profile</a>
+        {% endif %}
+        <a href="/message/{{user.id}}" class="btn btn-primary">Message {{ user.username }}</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -12,9 +12,22 @@ const UserSchema = new Schema(
 		password: { 
 			type: String, 
 			required: true 
+		},
+		bio: { 
+			type: String, 
+		},
+		favPlant: { 
+			type: String, 
+		},
+		imgLink: { 
+			type: String, 
 		}
+
 	},
-	{ timestamps: true }
+	{ 
+	timestamps: true,
+	strict: false
+	}
 )
 
 // creat the model
