@@ -31,10 +31,11 @@ router.post('/:receiverId', (req,res)=> {
 //Index route
 router.get('/:receiverId', (req,res) => {
     const recipientId = req.params.receiverId
-    Message.find({$or: [{recipient: recipientId}, {author: req.session.userId}] })
+    Message.find({$or: [{recipient: recipientId},{recipient: req.session.userId}] })
         .populate('recipient', 'username')
         .populate('author', 'username')
         .then(messages =>{
+            console.log
             User.findById(recipientId)
                 .then(recipient=>{
                     res.render('messages/index', {messages, recipient, ...req.session})
