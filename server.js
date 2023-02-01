@@ -23,21 +23,9 @@ middleware(app)
 ////////////////////
 const axios = require("axios");
 
-
-// app.get('/test/apitest', (req,res) => {
-// 	axios.request(options).then(function (response) {
-// 	console.log(response.data);
-// 	res.send(response.data)
-// }).catch(function (error) {
-// 	console.error(error);
-// });
-
-
-//})
 app.use('/auth', UserRouter)
 app.use('/plants', PlantRouter)
 app.use('/sale', SaleRouter)
-// app.use('/test', TestRouter)
 
 
 app.get('/', (req, res) => {

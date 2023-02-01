@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
     const { username, loggedIn, userId } = req.session
     // find all the plants
     Plant.find({})
-        .then(plants => { 
+        .then(async plants => { 
             const options = {
                 method: 'GET',
                 url: `${process.env.API_URL_CAT}`,
@@ -30,12 +30,11 @@ router.get('/', (req, res) => {
                   'X-RapidAPI-Host': `${process.env.API_HOST}`
                 }
             }
-            axios.request(options)
-                .then(function (response) {
-                console.log(response.data);
-                const categories = response.data
-                    res.render('plants/index', { plants, categories, username, loggedIn, userId })
-                })
+            const categoryCall = await axios(options)
+            const categories = categoryCall.data
+            console.log(categories)
+            res.render('plants/index', { plants, categories, username, loggedIn, userId })
+            })
                 .catch(function (error) {
                     console.error(error);
         })
@@ -44,7 +43,6 @@ router.get('/', (req, res) => {
             console.log(err)
             res.status(404).json(err)
         })
-    })
 })
 ///Index route
 router.get('/category/:categoryName', (req, res) => {

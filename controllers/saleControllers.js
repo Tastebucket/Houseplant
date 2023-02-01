@@ -47,7 +47,7 @@ router.post('/new/:plantId', (req,res) => {
     const newSale = req.body
     Sale.create(newSale)
         .then(sale =>{
-            res.redirect(`/plants/${plantId}`)})
+            res.redirect(`/sale/${plantId}`)})
         .catch((error) => {
             console.log('the error', error);
                 

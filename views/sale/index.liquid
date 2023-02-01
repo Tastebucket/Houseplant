@@ -1,13 +1,7 @@
 {% layout 'layout.liquid' %}
 {% block content %}
-  <div>
-    <input
-      type="text"
-      id="plant-search"
-      placeholder="Search Plants..">
-    <button id="search-button">GO</button>
-    <button id="reset">RESET</button>
-    <h2 class="display-6">All plants</h2>
+  <div class="container">
+    <h2 class="display-6">{{ sales[0].plant.name }} for sale</h2>
     <div class="row">
       {% for sale in sales %}
         <div
