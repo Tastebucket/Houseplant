@@ -17,9 +17,10 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
+        <a href="/plants" class="nav-link text-light me-4">Browse Plants</a>
+        <a href="/sale" class="nav-link text-light me-4">Browse Sales</a>
         {% if loggedIn %}
-          <a href="/plants" class="nav-link text-light me-4">Browse Plants</a>
-          <a href="/sale" class="nav-link text-light me-4">Browse Sales</a>
+          <a href="/message/threads" class="nav-link text-light me-4">Messages</a>
           <a href="/auth/logout" class="nav-link text-light me-4">Log Out</a>
         {% else %}
           <a href="/auth/signup" class="nav-link text-light me-4">Sign Up</a>

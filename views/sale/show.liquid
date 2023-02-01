@@ -22,17 +22,15 @@
               </dl>
             </div>
             <div class="col-3">
-              <img
-                class="rounded img-fluid"
-                src="{{sale.image}}"
-                alt="No image available">
+              {% if sale.image %}
+                <img class="rounded img-fluid" src="{{sale.image}}">
+              {% else %}
+                <img class="rounded img-fluid" src="https://www.pngitem.com/pimgs/m/13-133991_plants-leaf-flowering-silhouette-plant-free-download-plant.png">
+              {% endif %}
             </div>
           </div>
-          <a href="/sale/new/{{ plant.id }}" class="btn btn-info">
-            Sell a {{ plant.name }}
-          </a>
-          <a href="/sale/{{ plant.id }}" class="btn btn-info">
-            View Sales
+          <a href="/message/{{ sale.seller.id }}" class="btn btn-info">
+            Message {{ sale.seller.username }}
           </a>
         </div>
       </div>

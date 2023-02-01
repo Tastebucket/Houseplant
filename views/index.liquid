@@ -1,7 +1,16 @@
 {% layout "layout.liquid" %}
 {% block content %}
-
-    <h1>Welcome!</h1>
-
-
+  <div class="container">
+    <h1 class="m-4">Welcome to Paradise!</h1>
+    <div
+      class="container"
+      id="picture"
+      style="height: 35rem;">
+      <div class="text-center align-items-center">
+        <h4 class="text-center mt-5">Log In or Sign up to get started!</h4>
+        <a href="/auth/login" class="btn btn-primary m-auto">Log In</a>
+        <a href="/auth/signup" class="btn btn-primary m-auto">Sign Up</a>
+      </div>
+    </div>
+  </div>
 {% endblock %}

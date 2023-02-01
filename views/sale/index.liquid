@@ -17,7 +17,11 @@
             <p class="card-text">
               Price: ${{ sale.price }}
             </p>
-            <img class="card-img" src="{{sale.image}}">
+            {% if sale.image %}
+              <img class="card-img" src="{{sale.image}}">
+            {% else %}
+              <img class="card-img" src="https://www.pngitem.com/pimgs/m/13-133991_plants-leaf-flowering-silhouette-plant-free-download-plant.png">
+            {% endif %}
             {% if sale.seller == userId %}
               <hr>
               <div class="btn-group">
@@ -35,6 +39,7 @@
 
               </div>
             {% endif %}
+            <p class="card-text">{{ sale.createdAt }}</p>
             <a href="/sale/{{sale.id}}" class="btn btn-primary">View</a>
           </div>
         </div>

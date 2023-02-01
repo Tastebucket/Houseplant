@@ -21,9 +21,11 @@
               <img class="rounded img-fluid" src="{{plant.imageLink}}">
             </div>
           </div>
-          <a href="/sale/new/{{ plant.id }}" class="btn btn-info">
-            Sell a {{ plant.name }}
-          </a>
+          {% if loggedIn %}
+            <a href="/sale/new/{{ plant.id }}" class="btn btn-info">
+              Sell a {{ plant.name }}
+            </a>
+          {% endif %}
           <a href="/sale/plant/{{ plant.id }}" class="btn btn-info">
             View Sales
           </a>

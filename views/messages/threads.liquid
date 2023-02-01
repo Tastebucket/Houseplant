@@ -1,0 +1,13 @@
+{% layout "layout.liquid" %}
+{% block content %}
+  <div class="container">
+    <h2 class="text-center">Messaging threads</h2>
+    <div class="list-group">
+      {% for thread in threads %}
+        {% if thread.username != username %}
+          <a href="/message/{{thread.id}}" class="list-group-item list-group-item-action">{{ thread.username }}</a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

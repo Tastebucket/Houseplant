@@ -15,6 +15,26 @@ const router = express.Router()
 ////      Routes         ////
 /////////////////////////////
 
+//Index route
+//index of all message threads
+router.get('/threads', (req,res) =>{
+    Message.find({$or: [{recipient: req.session.userId},{author: req.session.userId}]})
+        .populate('author', 'username')
+        .then(messages=>{
+            const threads = []
+            messages.forEach(msg=>{
+                if (!threads.includes(msg.author)){
+                    threads.push(msg.author)
+                }
+            })
+            console.log(threads)
+            res.render('messages/threads', {threads, ...req.session})
+        })
+        .catch((error) => {
+			res.redirect(`/error?error=${error}`)
+		})
+})
+
 //Create Route
 router.post('/:receiverId', (req,res)=> {
     const receiverId = req.params.receiverId
@@ -47,6 +67,20 @@ router.get('/:receiverId', (req,res) => {
                 .catch((error) => {
                     res.redirect(`/error?error=${error}`)
                 })
+        })
+        .catch((error) => {
+			res.redirect(`/error?error=${error}`)
+		})
+})
+
+//Index route
+//index of all message threads
+router.get('/threads', (req,res) =>{
+    Message.find({$or: [{recipient: req.session.userId},{author: req.session.userId}]})
+        .then(messages=>{
+            //const authors = messages.distinct('author')
+            console.log(messages)
+            res.render('index')
         })
         .catch((error) => {
 			res.redirect(`/error?error=${error}`)

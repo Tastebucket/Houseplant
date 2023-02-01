@@ -9,3 +9,12 @@ nav {
 #category {
     color: black;
 }
+
+#picture {
+    background-image: url(https://www.houseplantexpansion.com/en/wp-content/uploads/2021/09/Indoor-House-Plant-Care.jpg);
+    background-size:cover;
+}
+
+.inlie-block {
+    display: inline-block;
+}

@@ -4,28 +4,54 @@
     <form action="/sale/{{sale.id}}?_method=PUT" method="POST">
       <fieldset>
         <legend>Edit Sale</legend>
-        <label class="form-label">Asking Price ($):</label>
+        <label class="form-label mt-4">Asking Price ($):</label>
         <input
           type="text"
           class="form-control"
           name="price"
-          placeholder="{{ sale.price }}"
-          value="{{ sale.price }}"
           required>
-        <label class="form-label">Maturity?:</label>
+
+        <label class="form-label mt-4">Height(cm):</label>
         <input
           type="text"
           class="form-control"
+          name="height">
+        <label class="form-label mt-4">Maturity?:</label><br>
+        <input
+          type="radio"
+          id="cutting"
           name="age"
-          placeholder="{{ sale.age }}"
-          value="{{ sale.age }}">
-        <label class="form-label">Height:</label>
+          value="Cutting">
+        <label for="cutting">Cutting</label><br>
+        <input
+          type="radio"
+          id="sapling"
+          name="age"
+          value="Sapling">
+        <label for="sapling">Sapling</label><br>
+        <input
+          type="radio"
+          id="seedling"
+          name="age"
+          value="Seedling">
+        <label for="seedling">Seedling</label><br>
+        <input
+          type="radio"
+          id="2years"
+          name="age"
+          value=">2 years">
+        <label for="2years">>2 years</label><br>
+        <input
+          type="radio"
+          id="mature-plant"
+          name="age"
+          value="Mature Plant">
+        <label for="mature-plant">Mature Plant</label><br>
+        <label class="form-label mt-4">Link to picture:</label>
         <input
           type="text"
           class="form-control"
-          name="height"
-          placeholder="{{ sale.height }}"
-          value="{{ sale.height }}">
+          name="image">
       </fieldset>
       <input
         type="submit"

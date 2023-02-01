@@ -47,7 +47,7 @@ router.post('/new/:plantId', (req,res) => {
     const newSale = req.body
     Sale.create(newSale)
         .then(sale =>{
-            res.redirect(`/sale/${plantId}`)})
+            res.redirect(`/sale/plant/${plantId}`)})
         .catch((error) => {
                 
             res.redirect(`/error?error=${error}`)
@@ -138,7 +138,12 @@ router.get('/plant/:plantId', (req,res) =>{
         .populate('seller', 'username')
         .then(sales => { 
             // save title for views page
-            const title = sales[0].plant.name
+            let title = ''
+            if (sales.length>0){
+                title = sales[0].plant.name
+                console.log('ding')
+            }
+            console.log(sales.length)
             res.render('sale/index', { sales, title, username, loggedIn, userId })
         })
         // catch errors if they occur

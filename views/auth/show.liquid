@@ -22,7 +22,11 @@
         {% if user.id == userId %}
           <a href="/auth/edit/{{user.id}}" class="btn btn-primary">Edit Profile</a>
         {% endif %}
-        <a href="/message/{{user.id}}" class="btn btn-primary">Message {{ user.username }}</a>
+        {% if loggedIn %}
+          {% if user.id != userId %}
+            <a href="/message/{{user.id}}" class="btn btn-primary">Message {{ user.username }}</a>
+          {% endif %}
+        {% endif %}
       </div>
     </div>
   </div>
