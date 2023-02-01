@@ -32,8 +32,9 @@ router.get('/', (req, res) => {
             }
             const categoryCall = await axios(options)
             const categories = categoryCall.data
-            console.log(categories)
-            res.render('plants/index', { plants, categories, username, loggedIn, userId })
+            //create title for index views
+            const title = 'All Plants'
+            res.render('plants/index', { plants, title, categories, username, loggedIn, userId })
             })
                 .catch(function (error) {
                     console.error(error);
@@ -49,10 +50,11 @@ router.get('/category/:categoryName', (req, res) => {
     const { username, loggedIn, userId } = req.session
     // find all the plants
     const category = req.params.categoryName
-    console.log(category)
+    //create title for index views
+    const title = category
     Plant.find({category: `${category}`})
         .then(plants => { 
-                    res.render('plants/index', { plants, username, loggedIn, userId })
+                    res.render('plants/index', { plants, title, username, loggedIn, userId })
                 })
         // catch errors if they occur
         .catch(err => {

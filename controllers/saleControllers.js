@@ -77,14 +77,12 @@ router.put('/:id', (req, res) => {
             // if the selleer is the person who is logged in
             if (sale.seller == req.session.userId) {
                 // update and save the sale
+                res.redirect('/sale/mine')
                 return sale.updateOne(req.body)
             } else {
                 // otherwise send a 401 unauthorized status
                 res.redirect(`/error?error=You%20Are%20not%20allowed%20to%20edit%20this%20sale`)
             }
-        })
-        .then(() => {
-            res.redirect('/sale/mine')
         })
         .catch(err => {
             // res.status(400).json(err)
@@ -118,14 +116,14 @@ router.delete('/:id', (req, res) => {
 //Index route for sales on a plant
 router.get('/:plantId', (req,res) =>{
     const { username, loggedIn, userId } = req.session
-    // find all the plants
     const plantId = req.params.plantId
-    // save title for views page
-    const title = plantId.name
+    // find all the plants
     Sale.find({plant: plantId })
         .populate('plant', 'name')
         .populate('seller', 'username')
         .then(sales => { 
+            // save title for views page
+            const title = sales[0].plant.name
             res.render('sale/index', { sales, title, username, loggedIn, userId })
         })
         // catch errors if they occur

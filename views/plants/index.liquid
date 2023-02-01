@@ -1,25 +1,28 @@
 {% layout 'layout.liquid' %}
 {% block content %}
   <div>
+    <div class="container-md m-3">
+      <input
+        type="text"
+        id="plant-search"
+        placeholder="Search Plants..">
+
+      <button id="search-button">GO</button>
+      <button id="reset">RESET</button>
+    </div>
     <div class="row">
-      <div class="col-1 m-2">
-        <h3>Browse by Category</h3>
+      <div class="col-1 m-4 p-1 border border-success rounded bg-light">
+        <h4 class="text-center">Browse by Category</h4>
         {% for category in categories %}
-          <a class="d-block" href="/plants/category/{{ category.Category }}">
+          <a
+            class="d-block"
+            id="category"
+            href="/plants/category/{{ category.Category }}">
             {{ category.Category }}</a>
         {% endfor %}
       </div>
-      <div class="col-10">
-        <div class="container-md m-3">
-          <input
-            type="text"
-            id="plant-search"
-            placeholder="Search Plants..">
-
-          <button id="search-button">GO</button>
-          <button id="reset">RESET</button>
-        </div>
-        <h2 class="display-6">All plants</h2>
+      <div class="col-10 m-2">
+        <h2 class="display-6 text-center">{{ title }}</h2>
         <div class="row">
           {% for plant in plants %}
             <div
@@ -31,9 +34,6 @@
                 <h5 class="card-title">
                   {{ plant.scientificName }}
                 </h5>
-                <p class="card-text">
-                  Body: {{ plant.imageLink }}
-                </p>
                 <p class="card-img">
                   <img src="{{plant.imageLink}}">
                 </p>

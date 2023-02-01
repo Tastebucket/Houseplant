@@ -3,29 +3,58 @@
   <div class="container-sm">
     <form method="POST">
       <fieldset>
-        <legend>Create New Sale</legend>
-        <label class="form-label">Asking Price ($):</label>
+        <legend>Create New Sale - {{ plantId.name }}</legend>
+        <label class="form-label mt-4">Asking Price ($):</label>
         <input
           type="text"
           class="form-control"
-          name="price"
-          placeholder="What kind of fruit is it?">
-        <label class="form-label">Maturity?:</label>
+          name="price">
+
+        <label class="form-label mt-4">Height(cm):</label>
         <input
           type="text"
           class="form-control"
+          name="height">
+        <label class="form-label mt-4">Maturity?:</label><br>
+        <input
+          type="radio"
+          id="cutting"
           name="age"
-          placeholder="Pick one">
-        <label class="form-label">Height:</label>
+          value="Cutting">
+        <label for="cutting">Cutting</label><br>
+        <input
+          type="radio"
+          id="sapling"
+          name="age"
+          value="Sapling">
+        <label for="sapling">Sapling</label><br>
+        <input
+          type="radio"
+          id="seedling"
+          name="age"
+          value="Seedling">
+        <label for="seedling">Seedling</label><br>
+        <input
+          type="radio"
+          id="2years"
+          name="age"
+          value=">2 years">
+        <label for="2years">>2 years</label><br>
+        <input
+          type="radio"
+          id="mature-plant"
+          name="age"
+          value="Mature Plant">
+        <label for="mature-plant">Mature Plant</label><br>
+        <label class="form-label mt-4">Link to picture:</label>
         <input
           type="text"
           class="form-control"
-          name="height"
-          placeholder="Pick one">
+          name="image">
       </fieldset>
       <input
         type="submit"
-        class="btn btn-success"
+        class="btn btn-success mt-4"
         value="Post New Sale">
     </form>
   </div>

@@ -15,11 +15,9 @@
               <a href="/auth/{{sale.seller.id}}">{{ sale.seller.username }}</a>
             </h5>
             <p class="card-text">
-              Body: {{ plant.imageLink }}
+              Price: ${{ sale.price }}
             </p>
-            <p class="card-img">
-              <img src="{{plant.imageLink}}">
-            </p>
+            <img class="card-img" src="{{sale.image}}">
             {% if sale.seller == userId %}
               <hr>
               <div class="btn-group">

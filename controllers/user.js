@@ -117,16 +117,14 @@ router.put('/:id', (req, res) => {
 			console.log('This is the user', user.id)
             // if the selleer is the person who is logged in
             if (user.id === req.session.userId) {
+				res.redirect(`/auth/${id}`)
                 // update and save the sale
                 return user.updateOne(req.body)
             } else {
 				console.log('no worky')
                 // otherwise send a 401 unauthorized status
-                //res.redirect(`/error?error=You%20Are%20not%20allowed%20to%20edit%20this%20sale`)
+                res.redirect(`/error?error=You%20Are%20not%20allowed%20to%20edit%20this%20sale`)
             }
-        })
-        .then(() => {
-            res.redirect(`/auth/${id}`)
         })
         .catch(err => {
             // res.status(400).json(err)

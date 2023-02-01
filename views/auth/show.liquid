@@ -19,7 +19,7 @@
           <h2>Favorite Plant</h2>
           <p>{{ user.favPlant }}</p>
         {% endif %}
-        {% if user.userId == req.session.userId %}
+        {% if user.id == userId %}
           <a href="/auth/edit/{{user.id}}" class="btn btn-primary">Edit Profile</a>
         {% endif %}
         <a href="/message/{{user.id}}" class="btn btn-primary">Message {{ user.username }}</a>
