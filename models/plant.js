@@ -5,8 +5,6 @@
 //import mongoose
 const mongoose = require('./connection')
 
-// Import our commentSchema, to use as a subdocument
-const commentSchema = require('./comment')
 
 // Destructure the Schema and model functions from mongoose
 const{ Schema, model } = mongoose
@@ -37,7 +35,6 @@ const plantSchema = new Schema ({
     flowering: {
     type: Boolean
     },
-    comments: [commentSchema]
 }, {
     timestamps: true
 })

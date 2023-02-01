@@ -73,19 +73,6 @@ router.get('/:receiverId', (req,res) => {
 		})
 })
 
-//Index route
-//index of all message threads
-router.get('/threads', (req,res) =>{
-    Message.find({$or: [{recipient: req.session.userId},{author: req.session.userId}]})
-        .then(messages=>{
-            //const authors = messages.distinct('author')
-            console.log(messages)
-            res.render('index')
-        })
-        .catch((error) => {
-			res.redirect(`/error?error=${error}`)
-		})
-})
 
 //Delete Route
 router.delete('/:id', (req, res)=>{

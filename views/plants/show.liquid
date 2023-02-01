@@ -12,9 +12,13 @@
                 <dt class="col-sm-3 mb-4">Category</dt>
                 <dd class="col-sm-9">{{ plant.category }}</dd>
                 <dt class="col-sm-3 mb-4">Watering</dt>
-                <dd class="col-sm-9">{{ plant.water }}</dd>
+                <dd class="col-sm-9">
+                  <a href="/plants/water/{{ plant.water }}">{{ plant.water }}</a>
+                </dd>
                 <dt class="col-sm-3">Light</dt>
-                <dd class="col-sm-9">{{ plant.light }}</dd>
+                <dd class="col-sm-9">
+                  {{ plant.light }}
+                </dd>
               </dl>
             </div>
             <div class="col-3">

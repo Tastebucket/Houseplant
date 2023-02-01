@@ -57,6 +57,41 @@ router.get('/category/:categoryName', (req, res) => {
 			res.redirect(`/error?error=${error}`)
 		})
     })
+
+///Index route
+router.get('/water/:water', (req, res) => {
+    const { username, loggedIn, userId } = req.session
+    // find all the plants
+    const water = req.params.water
+    //create title for index views
+    const title = water
+    Plant.find({water: `${water}`})
+        .then(plants => { 
+                    res.render('plants/index', { plants, title, username, loggedIn, userId })
+                })
+        // catch errors if they occur
+        .catch((error) => {
+			res.redirect(`/error?error=${error}`)
+		})
+    })
+
+///Index route
+router.get('/light/:light', (req, res) => {
+    const { username, loggedIn, userId } = req.session
+    // find all the plants
+    const light = req.params.light
+    //create title for index views
+    const title = light
+    console.log('this is the title', title)
+    Plant.find({light: `${light}`})
+        .then(plants => { 
+                    res.render('plants/index', { plants, title, username, loggedIn, userId })
+                })
+        // catch errors if they occur
+        .catch((error) => {
+			res.redirect(`/error?error=${error}`)
+		})
+    })
 //Show route
 router.get('/:id', (req, res) => {
     const id = req.params.id
