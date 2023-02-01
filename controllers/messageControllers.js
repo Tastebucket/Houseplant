@@ -32,7 +32,10 @@ router.post('/:receiverId', (req,res)=> {
 //Index route
 router.get('/:receiverId', (req,res) => {
     const recipientId = req.params.receiverId
-    Message.find({$or: [{recipient: recipientId},{author: recipientId}] })
+    Message.find({$or: 
+        [{$and: [{recipient: recipientId},{author: req.session.userId}]},
+        {$and: [{recipient: req.session.userId}, {author: recipientId}]}
+        ]})
         .populate('recipient', 'username')
         .populate('author', 'username')
         .then(messages =>{
