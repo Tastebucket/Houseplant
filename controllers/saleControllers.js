@@ -21,7 +21,7 @@ const router = express.Router()
 router.get('/', (req, res) => {
     // save title for views page
     const title = "All"
-    // find fruits by ownership
+    // find sales
     Sale.find()
         .populate('seller', 'username')
         .populate('plant', 'name')
@@ -49,7 +49,6 @@ router.post('/new/:plantId', (req,res) => {
         .then(sale =>{
             res.redirect(`/sale/${plantId}`)})
         .catch((error) => {
-            console.log('the error', error);
                 
             res.redirect(`/error?error=${error}`)
         })
@@ -60,11 +59,11 @@ router.post('/new/:plantId', (req,res) => {
 router.get('/mine', (req, res) => {
     // save title for views page
     const title = req.session.username
-    // find fruits by ownership
+    // find sales by seller
     Sale.find({ seller: req.session.userId })
         .populate('seller', 'username')
         .then(sales => {
-            // if found, display the fruits
+            // if found, display the sales
             res.render('sale/index', { sales, title, ...req.session })
         })
         .catch(err => {
@@ -143,10 +142,9 @@ router.get('/plant/:plantId', (req,res) =>{
             res.render('sale/index', { sales, title, username, loggedIn, userId })
         })
         // catch errors if they occur
-        .catch(err => {
-            console.log(err)
-            res.status(404).json(err)
-        })
+        .catch((error) => {
+			res.redirect(`/error?error=${error}`)
+		})
 })
 //Show route
 router.get('/:id', (req, res) => {
@@ -163,10 +161,9 @@ router.get('/:id', (req, res) => {
             // res.send( plants )
         })
         // catch errors if they occur
-        .catch(err => {
-            console.log(err)
-            res.status(404).json(err)
-        })
+        .catch((error) => {
+			res.redirect(`/error?error=${error}`)
+		})
 })
 
 //////////////////////////////

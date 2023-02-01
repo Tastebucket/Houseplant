@@ -64,15 +64,15 @@ router.delete('/:id', (req, res)=>{
             if (message.author == req.session.userId) {
                 // send success message
                 //res.sendStatus(204)
-                // delete the fruit
+                // delete the message
                 res.redirect(`/message/${recipient}`)
                 return message.deleteOne()
             } else {
                 // res.sendStatus(401)
-                res.redirect(`/error?error=You%20Are%20not%20allowed%20to%20delete%20this%20fruit`)
+                res.redirect(`/error?error=You%20Are%20not%20allowed%20to%20delete%20this%20message`)
             }
         })
-        .catch(err => {
+        .catch(error => {
             // res.status(400).json(err)
             res.redirect(`/error?error=${err}`)
         })

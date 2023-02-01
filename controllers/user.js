@@ -83,8 +83,6 @@ router.post('/login', async (req, res) => {
 		})
 		// catch any other errors that occur
 		.catch((error) => {
-			console.log('the error', error);
-			
 			res.redirect(`/error?error=${error}`)
 		})
 })
@@ -139,7 +137,6 @@ router.get('/:userId', (req,res)=>{
 			res.render('auth/show', {user,...req.session})
 	})
 		.catch((error) => {
-			console.log('the error', error);
 			
 			res.redirect(`/error?error=${error}`)
 		})

@@ -36,14 +36,10 @@ router.get('/', (req, res) => {
             const title = 'All Plants'
             res.render('plants/index', { plants, title, categories, username, loggedIn, userId })
             })
-                .catch(function (error) {
-                    console.error(error);
-        })
         // catch errors if they occur
-        .catch(err => {
-            console.log(err)
-            res.status(404).json(err)
-        })
+        .catch((error) => {
+			res.redirect(`/error?error=${error}`)
+		})
 })
 ///Index route
 router.get('/category/:categoryName', (req, res) => {
@@ -57,10 +53,9 @@ router.get('/category/:categoryName', (req, res) => {
                     res.render('plants/index', { plants, title, username, loggedIn, userId })
                 })
         // catch errors if they occur
-        .catch(err => {
-            console.log(err)
-            res.status(404).json(err)
-        })
+        .catch((error) => {
+			res.redirect(`/error?error=${error}`)
+		})
     })
 //Show route
 router.get('/:id', (req, res) => {
@@ -75,10 +70,9 @@ router.get('/:id', (req, res) => {
             // res.send( plants )
         })
         // catch errors if they occur
-        .catch(err => {
-            console.log(err)
-            res.status(404).json(err)
-        })
+        .catch((error) => {
+			res.redirect(`/error?error=${error}`)
+		})
 })
 
 
