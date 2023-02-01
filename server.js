@@ -7,6 +7,7 @@ const middleware = require('./utils/middleware')
 const PlantRouter = require('./controllers/plantControllers')
 const UserRouter = require('./controllers/user')
 const SaleRouter = require('./controllers/saleControllers')
+const MessageRouter = require('./controllers/messageControllers')
 
 // SEE MORE DEPENDENCIES IN ./utils/middleware.js
 // user and resource routes linked in ./utils/middleware.js
@@ -26,6 +27,7 @@ const axios = require("axios");
 app.use('/auth', UserRouter)
 app.use('/plants', PlantRouter)
 app.use('/sale', SaleRouter)
+app.use('/message', MessageRouter)
 
 
 app.get('/', (req, res) => {

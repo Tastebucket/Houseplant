@@ -1,4 +1,4 @@
-{% layout 'layout.liquid' %}
+{% layout "layout.liquid" %}
 {% block content %}
   <div class="container">
     <h2 class="display-6">{{ sales[0].plant.name }} for sale</h2>
@@ -11,7 +11,8 @@
           <h5 class="card-header">{{ sale.plant.name }}</h5>
           <div class="card-body">
             <h5 class="card-title">
-              Latin name: {{ sale.seller.username }}
+              Seller:
+              <a href="/auth/{{sale.seller.id}}">{{ sale.seller.username }}</a>
             </h5>
             <p class="card-text">
               Body: {{ plant.imageLink }}

@@ -3,6 +3,7 @@
 ////////////////////////////////////////////
 const express = require('express')
 const User = require('../models/user')
+const Plant = require('../models/plant')
 const bcrypt = require('bcryptjs')
 
 ////////////////////////////////////////////

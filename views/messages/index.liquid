@@ -1,0 +1,40 @@
+{% layout 'layout.liquid' %}
+{% block content %}
+  <h2>Message History with {{ recipient.username }}
+  </h2>
+
+  <div class="col-md-6">
+    {% for message in messages %}
+      <div class="container-sm justify-content-center">
+        <div class="card mb-4 shadow">
+          <div class="card-body">
+            <p>{{ message.note }}</p>
+            <p>- {{ message.author.username }}</p>
+            <p>
+              {{ message.createdAt }}
+            </p>
+            {% if message.author == userId %}
+              <form action="/message/delete/{{message.id}}/{{message.id}}?_method=DELETE" method="POST">
+                <input
+                  class="btn btn-danger"
+                  type="submit"
+                  value="X">
+              </form>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    <form method="POST">
+      <fieldset>
+        <legend>New Message</legend>
+        <label class="form-label">Message:</label>
+        <input
+          type="text"
+          name="note"
+          class="form-control mb-1">
+      </fieldset>
+      <input type="submit" class="">
+    </form>
+  </div>
+{% endblock %}
