@@ -1,0 +1,35 @@
+{% layout 'layout.liquid' %}
+{% block content %}
+  <div class="container-sm">
+    <form action="/sale/{{sale.id}}?_method=PUT" method="POST">
+      <fieldset>
+        <legend>Create New Sale</legend>
+        <label class="form-label">Asking Price ($):</label>
+        <input
+          type="text"
+          class="form-control"
+          name="price"
+          placeholder="{{ sale.price }}"
+          value="{{ sale.price }}">
+        <label class="form-label">Maturity?:</label>
+        <input
+          type="text"
+          class="form-control"
+          name="age"
+          placeholder="{{ sale.age }}"
+          value="{{ sale.age }}">
+        <label class="form-label">Height:</label>
+        <input
+          type="text"
+          class="form-control"
+          name="height"
+          placeholder="{{ sale.height }}"
+          value="{{ sale.height }}">
+      </fieldset>
+      <input
+        type="submit"
+        class="btn btn-success"
+        value="Edit Sale">
+    </form>
+  </div>
+{% endblock %}

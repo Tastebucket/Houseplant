@@ -1,7 +1,7 @@
 {% layout "layout.liquid" %}
 {% block content %}
   <div class="container">
-    <h2 class="display-6">{{ sales[0].plant.name }} for sale</h2>
+    <h2 class="display-6">{{ title }} Sale Postings</h2>
     <div class="row">
       {% for sale in sales %}
         <div
@@ -20,9 +20,22 @@
             <p class="card-img">
               <img src="{{plant.imageLink}}">
             </p>
-            <a href="/plants/{{ plant.id }}" class="btn btn-info">
-              View {{ plant.title }}
-            </a>
+            {% if sale.seller == userId %}
+              <hr>
+              <div class="btn-group">
+                {%- comment -%}
+                first button will take us to the edit page
+                second will actually be a form, that calls our delete route
+                {%- endcomment -%}
+                <a href="/sale/edit/{{sale.id}}" class="btn btn-primary">Edit</a>
+                <form action="/sale/{{sale.id}}?_method=DELETE" method="POST">
+                  <input
+                    type="submit"
+                    class="btn btn-danger"
+                    value="Delete {{sale.name}}">
+                </form>
+              </div>
+            {% endif %}
           </div>
         </div>
       {% endfor %}
