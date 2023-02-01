@@ -14,7 +14,7 @@
               {{ message.createdAt }}
             </p>
             {% if message.author == userId %}
-              <form action="/message/delete/{{message.id}}/{{message.id}}?_method=DELETE" method="POST">
+              <form action="/message/{{message.id}}?_method=DELETE" method="POST">
                 <input
                   class="btn btn-danger"
                   type="submit"
