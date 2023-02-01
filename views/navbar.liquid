@@ -18,12 +18,12 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         {% if loggedIn %}
-          <a href="/plants" class="nav-link text-light me-3">Browse</a>
-          <a href="/plants/new" class="nav-link text-light me-3">New</a>
-          <a href="/auth/logout" class="nav-link text-light me-3">Log Out</a>
+          <a href="/plants" class="nav-link text-light me-4">Browse Plants</a>
+          <a href="/sale" class="nav-link text-light me-4">Browse Sales</a>
+          <a href="/auth/logout" class="nav-link text-light me-4">Log Out</a>
         {% else %}
-          <a href="/auth/signup" class="nav-link text-light me-3">Sign Up</a>
-          <a href="/auth/login" class="nav-link text-light me-3">Sign In</a>
+          <a href="/auth/signup" class="nav-link text-light me-4">Sign Up</a>
+          <a href="/auth/login" class="nav-link text-light me-4">Sign In</a>
         {% endif %}
       </div>
     </div>

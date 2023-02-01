@@ -6,6 +6,7 @@ const Sale = require('../models/sale')
 const Plant = require('../models/plant')
 require('dotenv').config()
 const axios = require('axios')
+const { populate } = require('../models/plant')
 
 /////////////////////////////////////
 //// Create Router               ////
@@ -16,7 +17,22 @@ const router = express.Router()
 ////      Routes         ////
 /////////////////////////////
 
-
+//Index for all sales
+router.get('/', (req, res) => {
+    // save title for views page
+    const title = "All"
+    // find fruits by ownership
+    Sale.find()
+        .populate('seller', 'username')
+        .populate('plant', 'name')
+        .then(sales => {
+            // if found, display the sales
+            res.render('sale/index', { sales, title, ...req.session })
+        })
+        .catch(err => {
+            res.redirect(`/error?error=${err}`)
+        })
+})
 // Get route for new sale form
 router.get('/new/:plantId', (req,res) => {
     res.render('sale/new', { ...req.session})
@@ -114,7 +130,7 @@ router.delete('/:id', (req, res) => {
 
 
 //Index route for sales on a plant
-router.get('/:plantId', (req,res) =>{
+router.get('/plant/:plantId', (req,res) =>{
     const { username, loggedIn, userId } = req.session
     const plantId = req.params.plantId
     // find all the plants
@@ -125,6 +141,26 @@ router.get('/:plantId', (req,res) =>{
             // save title for views page
             const title = sales[0].plant.name
             res.render('sale/index', { sales, title, username, loggedIn, userId })
+        })
+        // catch errors if they occur
+        .catch(err => {
+            console.log(err)
+            res.status(404).json(err)
+        })
+})
+//Show route
+router.get('/:id', (req, res) => {
+    const id = req.params.id
+    const { username, loggedIn, userId } = req.session
+    console.log("This is the id", req.params.id)
+    console.log('this is the session', req.session)
+    // find the plant by its id
+    Sale.findById(id)
+        .populate('plant', 'name')
+        .populate('seller', 'username')
+        .then(sale => { 
+            res.render('sale/show',  { sale, username, loggedIn, userId })
+            // res.send( plants )
         })
         // catch errors if they occur
         .catch(err => {

@@ -1,0 +1,41 @@
+{% layout 'layout.liquid' %}
+{% block content %}
+  <div class="container-md">
+    <article>
+      <h1>{{ sale.plant.name }}</h1>
+      <div class="card" style="width: 50rem;">
+        <h5 class="card-header">{{ plant.scientificName }}</h5>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-7">
+              <dl class="row">
+                <dt class="col-sm-3 mb-4">Seller</dt>
+                <dd class="col-sm-9">
+                  <a href="/auth/{{sale.seller.id}}">{{ sale.seller.username }}</a>
+                </dd>
+                <dt class="col-sm-3 mb-4">Price</dt>
+                <dd class="col-sm-9">{{ sale.price }}</dd>
+                <dt class="col-sm-3 mb-4">Maturity</dt>
+                <dd class="col-sm-9">{{ sale.age }}</dd>
+                <dt class="col-sm-3">Height</dt>
+                <dd class="col-sm-9">{{ sale.height }}</dd>
+              </dl>
+            </div>
+            <div class="col-3">
+              <img
+                class="rounded img-fluid"
+                src="{{sale.image}}"
+                alt="No image available">
+            </div>
+          </div>
+          <a href="/sale/new/{{ plant.id }}" class="btn btn-info">
+            Sell a {{ plant.name }}
+          </a>
+          <a href="/sale/{{ plant.id }}" class="btn btn-info">
+            View Sales
+          </a>
+        </div>
+      </div>
+    </article>
+  </div>
+{% endblock %}

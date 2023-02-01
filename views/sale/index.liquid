@@ -32,8 +32,10 @@
                     class="btn btn-danger"
                     value="Delete {{sale.name}}">
                 </form>
+
               </div>
             {% endif %}
+            <a href="/sale/{{sale.id}}" class="btn btn-primary">View</a>
           </div>
         </div>
       {% endfor %}

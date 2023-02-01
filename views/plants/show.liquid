@@ -7,25 +7,24 @@
         <h5 class="card-header">{{ plant.scientificName }}</h5>
         <div class="card-body">
           <div class="row">
-            <div class="col">
-              <h4 class="card-title mb-4">
-                Category: {{ plant.category }}
-              </h4>
-              <h5 class="card-text mb-5">
-                Watering: {{ plant.water }}
-              </h5>
-              <h5 class="card-text mb-5">
-                Light: {{ plant.light }}
-              </h5>
+            <div class="col-7">
+              <dl class="row">
+                <dt class="col-sm-3 mb-4">Category</dt>
+                <dd class="col-sm-9">{{ plant.category }}</dd>
+                <dt class="col-sm-3 mb-4">Watering</dt>
+                <dd class="col-sm-9">{{ plant.water }}</dd>
+                <dt class="col-sm-3">Light</dt>
+                <dd class="col-sm-9">{{ plant.light }}</dd>
+              </dl>
             </div>
-            <div class="col">
+            <div class="col-3">
               <img class="rounded img-fluid" src="{{plant.imageLink}}">
             </div>
           </div>
           <a href="/sale/new/{{ plant.id }}" class="btn btn-info">
             Sell a {{ plant.name }}
           </a>
-          <a href="/sale/{{ plant.id }}" class="btn btn-info">
+          <a href="/sale/plant/{{ plant.id }}" class="btn btn-info">
             View Sales
           </a>
         </div>
